@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let t of tasks" [class.pending]="t.pending">
+    <app-task-details [task]="t" (deleted)='deleteTask(t)'></app-task-details>
+  </li>
+</ul>

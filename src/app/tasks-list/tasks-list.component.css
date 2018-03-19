@@ -1,0 +1,25 @@
+ul{
+  list-style: none;  /**quita puntos en las listas*/
+  padding-left:0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+ul li {
+  display: block;
+  background-color: lightgreen;
+  margin:5px 0px;
+  font-size:2em;
+}
+
+ul li.pending{
+  background-color: lightcoral;
+}
+
+ul li:hover{
+  background-color: green;
+  cursor:pointer;
+}
+
+ul li.pending:hover{
+  background-color: red;
+  cursor:pointer;
+}
