@@ -1,5 +1,11 @@
-<ul>
-  <li *ngFor="let t of tasks" [class.pending]="t.pending">
-    <app-task-details [task]="t" (deleted)='deleteTask(t)'></app-task-details>
-  </li>
-</ul>
+<mat-toolbar color="primary">
+  <span>MY tasks</span>
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+
+    <button mat-button (click)="addTask()"> Add task</button>
+</mat-toolbar>
+<mat-list>
+    <app-task-details *ngFor="let t of tasks.findAllTasks()" [task]="t" (deleted)='deleteTask(t)'>
+    </app-task-details>
+</mat-list>

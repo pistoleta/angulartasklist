@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Task } from '../task';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-details',
@@ -14,12 +15,20 @@ export class TaskDetailsComponent implements OnInit {
   @Output()
   deleted = new EventEmitter();
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  editTask() {
+    this.router.navigateByUrl(`/edit/${this.task.id}`);
+  }
 
   deleteTask() {
     console.log(`deleteTask(${this.task.id})`);
     this.deleted.emit(this.task);
   }
+  completeTask() {
+    this.task.pending = false;
+  }
+
   ngOnInit() {
   }
 

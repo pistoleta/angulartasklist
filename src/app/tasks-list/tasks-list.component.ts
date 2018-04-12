@@ -1,35 +1,34 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
+import { TasksService } from '../tasks.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.css']
 })
+
 export class TasksListComponent implements OnInit, OnDestroy {
 
-   tasks: Task[];
-
-  constructor() {
-    this.tasks = [
-      {id: 0, title: 'Titulo1', pending: false},
-      {id: 1, title: 'Titulo2', pending: true},
-      {id: 2, title: 'Titulo3', pending: false}];
+    constructor(public tasks: TasksService, private router: Router) {
     }
 
-  deleteTask(t: Task) {
-      console.log(`TaskList.deleTask(${t.id})`);
-      const index = this.tasks.findIndex((_t) => t.id === _t.id);
-      if (index !== -1) {
-        this.tasks.splice(index, 1);
-      }
+    addTask() {
+     // const title = prompt('Introducir nombre tarea');
+     // this.tasks.addTask({title: title, pending: true});
+     this.router.navigateByUrl('/add');
     }
 
-  ngOnInit() {
-    console.log('ngOnInit()');
-  }
+    deleteTask(t: Task) {
+      this.tasks.removeTask(t.id);
+    }
 
-  ngOnDestroy() {
-    console.log('ngOndestroy()');
-  }
+    ngOnInit() {
+      console.log('ngOnInit()');
+    }
+
+    ngOnDestroy() {
+      console.log('ngOndestroy()');
+    }
 }
